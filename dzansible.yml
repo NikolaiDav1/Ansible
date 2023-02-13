@@ -1,5 +1,5 @@
 ---
-- name: dz ansible
+- name: For build server
   hosts: build
   become: yes
 
@@ -36,7 +36,7 @@
       dest: /tmp/
       flat: true
   
-- name: dz ansible
+- name: for prod server
   hosts: prod
   become: yes
 
