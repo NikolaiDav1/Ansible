@@ -1,6 +1,6 @@
 ---
 - name: dz ansible
-  hosts: web
+  hosts: build
   become: yes
 
   tasks:
@@ -14,9 +14,34 @@
       name: maven
       state: present
 
-  - name: git
+  - name: Clone from github
+    ansible.builtin.git:
+      repo: https://github.com/miladhub/calculator-servlet-example
+      dest: /tmp/calculator-servlet-example/
+      single_branch: yes
+      version: master
+
+  - name: build
+    command: mvn --batch-mode --quiet install
+    args:
+     chdir: /tmp/calculator-servlet-example/
+  
+- name: dz ansible
+  hosts: prod
+  become: yes
+
+  tasks:    
+  - name: java
     apt:
-      name: git
+      name: default-jdk
       state: present
 
+  - name: tomcat
+    apt:
+      name: tomcat9
+      state: present
+
+  - name: Copy from build to prod
+    synchronize: src=/tmp/calculator-servlet-example/target/ dest=/tmp/
+    delegate_to: build
 
