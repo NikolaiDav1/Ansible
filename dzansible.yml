@@ -15,7 +15,7 @@
       state: present
 
   - name: Clone from github
-    ansible.builtin.git:
+    git:
       repo: https://github.com/miladhub/calculator-servlet-example
       dest: /tmp/calculator-servlet-example/
       single_branch: yes
