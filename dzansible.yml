@@ -54,5 +54,5 @@
   - name: Copy to prod
     copy:
       src: /tmp/mycalcwebapp.war
-      dest: "{{ ansible_env.$CATALINA_HOME }}/webapps/"
+      dest: /var/lib/tomcat9/webapps/
 
