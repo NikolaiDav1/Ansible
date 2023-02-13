@@ -31,10 +31,10 @@
      chdir: /tmp/calculator-servlet-example/
 
   - name: get war from build to master
-    fetch:
+    synchronize:
+      mode: pull
       src: /tmp/calculator-servlet-example/target/mycalcwebapp.war
       dest: /tmp/
-      flat: true
   
 - name: for prod server
   hosts: prod
@@ -52,7 +52,8 @@
       state: present
 
   - name: copy war from master to prod
-    copy:
-      src: /tmp/mycalcwebapp.war
-      dest: /var/lib/tomcat9/webapps/
+    synchronize:
+      mode: push
+      src: /tmp/calculator-servlet-example/target/mycalcwebapp.war
+      dest: /tmp/
 
