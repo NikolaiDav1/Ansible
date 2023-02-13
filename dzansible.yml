@@ -33,6 +33,7 @@
     fetch:
       src: /tmp/calculator-servlet-example/target/mycalcwebapp.war
       dest: /tmp/
+      flat: true
   
 - name: dz ansible
   hosts: prod
