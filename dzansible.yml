@@ -13,6 +13,7 @@
     apt:
       name: git
       state: present
+
   - name: maven
     apt:
       name: maven
@@ -53,5 +54,5 @@
   - name: Copy to prod
     copy:
       src: /tmp/mycalcwebapp.war
-      dest: /tmp/
+      dest: "{{ansible_env$CATALINA_HOME}}/webapps/"
 
