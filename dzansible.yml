@@ -1,0 +1,22 @@
+---
+- name: dz ansible
+  hosts: web
+  become: yes
+
+  tasks:
+  - name: java
+    apt:
+      name: default-jdk
+      state: present
+
+  - name: maven
+    apt:
+      name: maven
+      state: present
+
+  - name: git
+    apt:
+      name: git
+      state: present
+
+
