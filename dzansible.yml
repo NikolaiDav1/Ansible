@@ -4,33 +4,33 @@
   become: yes
 
   tasks:
-  - name: java
+  - name: check java
     apt:
       name: default-jdk
       state: present
 
-  - name: git
+  - name: check git
     apt:
       name: git
       state: present
 
-  - name: maven
+  - name: check maven
     apt:
       name: maven
       state: present
 
-  - name: Clone from github
+  - name: clone from github
     git:
       repo: https://github.com/miladhub/calculator-servlet-example
       dest: /tmp/calculator-servlet-example/
       clone: yes
 
-  - name: build
+  - name: build app
     command: mvn --batch-mode --quiet install
     args:
      chdir: /tmp/calculator-servlet-example/
 
-  - name: Fetch from build
+  - name: get war from build to master
     fetch:
       src: /tmp/calculator-servlet-example/target/mycalcwebapp.war
       dest: /tmp/
@@ -41,17 +41,17 @@
   become: yes
 
   tasks:    
-  - name: java
+  - name: check java
     apt:
       name: default-jdk
       state: present
 
-  - name: tomcat
+  - name: check tomcat
     apt:
       name: tomcat9
       state: present
 
-  - name: Copy to prod
+  - name: copy war from master to prod
     copy:
       src: /tmp/mycalcwebapp.war
       dest: /var/lib/tomcat9/webapps/
