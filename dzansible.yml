@@ -18,7 +18,6 @@
     git:
       repo: https://github.com/miladhub/calculator-servlet-example
       dest: /tmp/calculator-servlet-example/
-      single_branch: yes
       version: master
 
   - name: build
