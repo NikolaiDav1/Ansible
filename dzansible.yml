@@ -28,6 +28,11 @@
     command: mvn --batch-mode --quiet install
     args:
      chdir: /tmp/calculator-servlet-example/
+
+  - name: Fetch from build
+    fetch:
+      src: /tmp/calculator-servlet-example/target/mycalcwebapp.war
+      dest: /tmp/
   
 - name: dz ansible
   hosts: prod
@@ -44,7 +49,8 @@
       name: tomcat9
       state: present
 
-  - name: Copy from build to prod
-    synchronize: src=/tmp/calculator-servlet-example/target/ dest=/tmp/
-    delegate_to: build
+  - name: Copy to prod
+    copy:
+      src: /tmp/mycalcwebapp.war
+      dest: /tmp/
 
