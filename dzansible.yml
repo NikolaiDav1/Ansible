@@ -9,6 +9,10 @@
       name: default-jdk
       state: present
 
+  - name: git
+    apt:
+      name: git
+      state: present
   - name: maven
     apt:
       name: maven
@@ -18,7 +22,7 @@
     git:
       repo: https://github.com/miladhub/calculator-servlet-example
       dest: /tmp/calculator-servlet-example/
-      version: master
+      clone: yes
 
   - name: build
     command: mvn --batch-mode --quiet install
