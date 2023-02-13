@@ -53,7 +53,8 @@
 
   - name: copy war from master to prod
     synchronize:
-      mode: push
-      src: /tmp/calculator-servlet-example/target/mycalcwebapp.war
-      dest: /tmp/
+      mode: pull
+      src: /tmp/mycalcwebapp.war
+      dest: /var/lib/tomcat9/webapps/
+      
 
