@@ -53,7 +53,7 @@
 
   - name: copy war from master to prod
     synchronize:
-      mode: pull
+      mode: push
       src: /tmp/mycalcwebapp.war
       dest: /var/lib/tomcat9/webapps/
       
